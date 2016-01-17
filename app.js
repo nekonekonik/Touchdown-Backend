@@ -58,8 +58,8 @@ var client = require('./client');
 
 app.post('/sms', function(req, res) {
 
-    client.sendTo(TEST_RCVP_NUMBER, req.body);
-    resp.message({from: TWILIO_NUMBER, to: TEST_SENDER_NUMBER}, req.body);
+    client.sendTo(ENV[TEST_RCVP_NUMBER], req.body);
+    resp.message({from: ENV[TWILIO_NUMBER], to: ENV[TEST_SENDER_NUMBER]}, req.body);
 
     res.writeHead(200);
 });
