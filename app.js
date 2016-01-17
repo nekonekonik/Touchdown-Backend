@@ -65,6 +65,7 @@ var client = require('./client');
 var querystring = require('querystring');
 
 app.post('/sms', function(req, res) {
+    console.log(req.body.message);
     var form = { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message };
     var formData = querystring.stringify(form);
     var contentLength = formData.length;
@@ -86,6 +87,7 @@ app.post('/sms', function(req, res) {
     }
 
     request(options, function (err, res, body) {
+      console.log(options);
       if (err) {
         console.log('Error :' ,err)
         return;
