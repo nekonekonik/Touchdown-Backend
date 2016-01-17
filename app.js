@@ -59,7 +59,7 @@ var client = require('./client');
 
 app.get('/test', function(req, res) {
   console.log(req);
-});)
+});
 
 app.post('/sms', function(req, res) {
     var options = {
