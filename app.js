@@ -54,18 +54,15 @@ app.delete('/quote/:id', function(req, res) {
   res.json(true);
 });
 
+var client = require('./client');
+
 app.post('/sms', function(req, res) {
-  // Create a TwiML response
-    var resp = new twilio.TwimlResponse();
- 
+
+    client.sendTo(TEST_RCVP_NUMBER, req.body);
     resp.message({from: TWILIO_NUMBER, to: TEST_SENDER_NUMBER}, req.body);
- 
-    //Render the TwiML document using "toString"
-    res.writeHead(200, {
-        'Content-Type':'text/xml'
-    });
-    res.end(resp.toString());
-})
+
+    res.writeHead(200);
+});
 
 app.listen(3000);
 module.exports = app;
