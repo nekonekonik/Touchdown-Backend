@@ -62,17 +62,23 @@ var client = require('./client');
 //   res.status(200);
 // });
 
+var querystring = require('querystring');
+
 app.post('/sms', function(req, res) {
-    console.log('req', req);
-    console.log('req body', req.body);
-    console.log('req body message', req.body.message);
+    var form = { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message };
+    var formData = querystring.stringify(form);
+    var contentLength = formData.length;
+
     var options = {
       method: 'post',
-      form: { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message }, // Javascript object
+      body: formData, // Javascript object
       //json: true, // Use,If you are sending JSON data
       //url: 'https://touchdownhero.herokuapp.com/test',
       url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': contentLength
+      },
       authorization : {
         username: process.env.TWILIO_ACCOUNT_SID,
         password: process.env.TWILIO_AUTH_TOKEN
