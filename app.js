@@ -81,11 +81,11 @@ app.post('/sms', function(req, res) {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Content-Length': contentLength,
         'Authorization' : auth
-      },
-      authorization : {
-        username: process.env.TWILIO_ACCOUNT_SID,
-        password: process.env.TWILIO_AUTH_TOKEN
       }
+      // authorization : {
+      //   username: process.env.TWILIO_ACCOUNT_SID,
+      //   password: process.env.TWILIO_AUTH_TOKEN
+      // }
     }
 
     request(options, function (err, res, body) {
