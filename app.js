@@ -80,7 +80,7 @@ app.post('/sms', function(req, res) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Content-Length': contentLength,
-        "Authorization" : auth
+        'Authorization' : auth
       },
       authorization : {
         username: process.env.TWILIO_ACCOUNT_SID,
