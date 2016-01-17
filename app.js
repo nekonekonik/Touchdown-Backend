@@ -59,6 +59,7 @@ var client = require('./client');
 
 app.post('/test', function(req, res) {
   console.log('req', req);
+  res.status(200);
 });
 
 app.post('/sms', function(req, res) {
@@ -83,7 +84,7 @@ app.post('/sms', function(req, res) {
         console.log('Error :' ,err)
         return
       }     
-      // console.log(' Body :',body)
+      //console.log(' Body :',body)
 
     });
 
