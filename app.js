@@ -68,7 +68,7 @@ app.post('/sms', function(req, res) {
     console.log(req.body.message);
     var form = { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message };
     //var formData = querystring.stringify(form);
-    var contentLength = formData.length;
+    // var contentLength = formData.length;
 
     var options = {
       method: 'post',
@@ -77,8 +77,8 @@ app.post('/sms', function(req, res) {
       //url: 'https://touchdownhero.herokuapp.com/test',
       url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': contentLength
+        'Content-Type': 'application/x-www-form-urlencoded'
+        // 'Content-Length': contentLength
       },
       authorization : {
         username: process.env.TWILIO_ACCOUNT_SID,
