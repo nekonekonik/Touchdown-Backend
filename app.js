@@ -92,7 +92,8 @@ app.post('/sms', function(req, res) {
         console.log('Error :' ,err)
         return;
       }     
-      //console.log(' Body :',body)
+      console.log('res', res);
+      console.log(' Body :',body)
 
     });
 
