@@ -72,7 +72,7 @@ app.post('/sms', function(req, res) {
       //json: true, // Use,If you are sending JSON data
       //url: 'https://touchdownhero.herokuapp.com/test',
       url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages',
-      //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       authorization : {
         username: process.env.TWILIO_ACCOUNT_SID,
         password: process.env.TWILIO_AUTH_TOKEN
