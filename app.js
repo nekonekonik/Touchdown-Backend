@@ -57,8 +57,8 @@ app.delete('/quote/:id', function(req, res) {
 var client = require('./client');
 
 app.post('/sms', function(req, res) {
-
-    client.sendTo(process.env.TEST_RCVP_NUMBER, req.body.body);
+    console.log(req);
+    //client.sendTo(process.env.TEST_RCVP_NUMBER, req.body.body);
 
     res.writeHead(200);
 });
