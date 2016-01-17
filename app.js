@@ -58,9 +58,9 @@ app.delete('/quote/:id', function(req, res) {
 var client = require('./client');
 
 app.post('/sms', function(req, res) {
-    console.log(req);
-    console.log(req.body);
-    console.log(req.body.message);
+    console.log('req', req);
+    console.log('req body', req.body);
+    console.log('req body message', req.body.message);
     var options = {
       method: 'post',
       body: { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message }, // Javascript object
