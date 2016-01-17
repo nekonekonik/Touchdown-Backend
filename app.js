@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var https = require('https');
+var request = require('request');
 var app = express();
 
 app.use(bodyParser.json());
@@ -58,12 +58,21 @@ app.delete('/quote/:id', function(req, res) {
 var client = require('./client');
 
 app.post('/sms', function(req, res) {
-    https.post('https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages'), { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.body.message }, function(res){
-      response.setEncoding('utf8');
-      res.on('data', function(data) {
-        console.log(data);
-      });
-    };
+    var options = {
+      method: 'post',
+      body: { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.body.message }, // Javascript object
+      json: true, // Use,If you are sending JSON data
+      url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages'
+    }
+    
+    request(options, function (err, res, body) {
+      if (err) {
+        console.log('Error :' ,err)
+        return
+      }     
+      console.log(' Body :',body)
+
+    });
 
     res.writeHead(200);
 });
