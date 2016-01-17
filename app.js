@@ -60,11 +60,15 @@ var client = require('./client');
 app.post('/sms', function(req, res) {
     var options = {
       method: 'post',
-      body: { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.body.message }, // Javascript object
+      body: { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message }, // Javascript object
       json: true, // Use,If you are sending JSON data
-      url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages'
+      url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages',
+      authorization : {
+        username: process.env.TWILIO_ACCOUNT_SID,
+        password: process.env.TWILIO_AUTH_TOKEN
+      }
     }
-    
+
     request(options, function (err, res, body) {
       if (err) {
         console.log('Error :' ,err)
