@@ -62,7 +62,7 @@ app.post('/sms/:MessageSid', function(req, res) {
   }, function(err, message) {
     console.log('err');
     console.log(err);
-      client.sendTo(process.env.TEST_RCVP_NUMBER(message.body);
+      client.sendTo(process.env.TEST_RCVP_NUMBER(message.body));
   });
 
     res.writeHead(200);
