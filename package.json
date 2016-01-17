@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -22,5 +22,10 @@
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-watch": "^0.6.1",
     "twilio": "^2.8.0"
+  },
+  "engines": {
+    "node": "0.12.4",
+    "npm" : "~2.12.1"
   }
+
 }
