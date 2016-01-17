@@ -59,8 +59,8 @@ app.delete('/quote/:id', function(req, res) {
 var client = require('./client');
 
 app.post('/sms', function(req, res) {
-
-    http.post('http://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages'), { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.body.message }, function(res){
+    console.log(req.body.message);
+    http.post('api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages'), { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.body.message }, function(res){
       response.setEncoding('utf8');
       res.on('data', function(data) {
         console.log(data);
