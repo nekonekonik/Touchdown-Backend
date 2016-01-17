@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var http = require('http');
+http.post = require('http-post');
 var app = express();
 
 app.use(bodyParser.json());
@@ -56,16 +58,21 @@ app.delete('/quote/:id', function(req, res) {
 
 var client = require('./client');
 
-app.post('/sms/:MessageSid', function(req, res) {
-  client.messages(req.params.MessageSid).post({
-      body: ''
-  }, function(err, message) {
+app.post('/sms/:msg', function(req, res) {
+  client.messages(req.params.MessageSid).get(function(err, message) {
     console.log('err');
     console.log(err);
       client.sendTo(process.env.TEST_RCVP_NUMBER(message.body));
   });
 
     res.writeHead(200);
+});
+
+http.post('https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID), { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.params.msg }, function(res){
+  response.setEncoding('utf8');
+  res.on('data', function(data) {
+    console.log(data);
+  });
 });
 
 app.listen(3000);
