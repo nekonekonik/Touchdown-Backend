@@ -56,10 +56,14 @@ app.delete('/quote/:id', function(req, res) {
 
 var client = require('./client');
 
-app.post('/sms', function(req, res) {
-    console.log(req.body);
-    console.log(req.body.Body);
-    client.sendTo(process.env.TEST_RCVP_NUMBER, req.body.Body);
+app.post('/sms/:MessageSid', function(req, res) {
+  client.messages(req.params.MessageSid).post({
+      body: ''
+  }, function(err, message) {
+    console.log('err');
+    console.log(err);
+      client.sendTo(process.env.TEST_RCVP_NUMBER(message.body);
+  });
 
     res.writeHead(200);
 });
