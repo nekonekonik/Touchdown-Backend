@@ -58,7 +58,8 @@ var client = require('./client');
 
 app.post('/sms', function(req, res) {
     console.log(req);
-    //client.sendTo(process.env.TEST_RCVP_NUMBER, req.body.body);
+    console.log(req.route.stack);
+    client.sendTo(process.env.TEST_RCVP_NUMBER, req.route.stack.body);
 
     res.writeHead(200);
 });
