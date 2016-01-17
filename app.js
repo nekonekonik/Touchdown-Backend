@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var http = require('http');
-http.post = require('http-post');
+var https = require('https');
 var app = express();
 
 app.use(bodyParser.json());
@@ -59,8 +58,7 @@ app.delete('/quote/:id', function(req, res) {
 var client = require('./client');
 
 app.post('/sms', function(req, res) {
-    console.log(req.body.message);
-    http.post('api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages'), { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.body.message }, function(res){
+    https.post('https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages'), { To: process.env.TEST_RCVP_NUMBER, From: process.env.PERSONAL_NUMBER, Body: req.body.message }, function(res){
       response.setEncoding('utf8');
       res.on('data', function(data) {
         console.log(data);
