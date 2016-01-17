@@ -14,7 +14,8 @@
     "kerberos": "0.0.17",
     "mongoose": "^4.3.4",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "twilio": "^2.8.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -25,7 +26,6 @@
   },
   "engines": {
     "node": "0.12.4",
-    "npm" : "~2.12.1"
+    "npm": "~2.12.1"
   }
-
 }
