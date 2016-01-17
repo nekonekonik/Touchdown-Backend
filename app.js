@@ -57,7 +57,7 @@ app.delete('/quote/:id', function(req, res) {
 
 var client = require('./client');
 
-app.get('/test', function(req, res) {
+app.post('/test', function(req, res) {
   console.log(req);
 });
 
