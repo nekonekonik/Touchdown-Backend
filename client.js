@@ -9,11 +9,11 @@ var twilio = require('twilio');
 var client = new twilio.RestClient(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 client.sendInFiveMin = function() {
-    client.sendTo(process.env.TEST_RCVP_NUMBER, 'Your driver, Nicholette, is arriving in 5 minutes!');
+    client.sendTo(process.env.TEST_RCVP_NUMBER, 'Your driver, Jun Hao, is arriving in 5 minutes!');
 };
 
 client.sendWhenReached = function() {
-    client.sendTo(process.env.TEST_RCVP_NUMBER, 'Your driver, Nicholette, has arrived!');
+    client.sendTo(process.env.TEST_RCVP_NUMBER, 'Your driver, Jun Hao, has arrived!');
 };
 
 client.sendTo = function(recpNum, msg) {
