@@ -69,6 +69,7 @@ app.post('/sms', function(req, res) {
     var form = { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message };
     var formData = querystring.stringify(form);
     var contentLength = formData.length;
+    var auth = "Basic " + new Buffer(process.env.TWILIO_ACCOUNT_SID + ":" + process.env.TWILIO_AUTH_TOKEN).toString("base64");
 
     var options = {
       method: 'post',
@@ -78,7 +79,8 @@ app.post('/sms', function(req, res) {
       url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': contentLength
+        'Content-Length': contentLength,
+        "Authorization" : auth
       },
       authorization : {
         username: process.env.TWILIO_ACCOUNT_SID,
