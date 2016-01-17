@@ -57,6 +57,10 @@ app.delete('/quote/:id', function(req, res) {
 
 var client = require('./client');
 
+app.post('/test', function(req, res) {
+  console.log('req', req);
+});
+
 app.post('/sms', function(req, res) {
     console.log('req', req);
     console.log('req body', req.body);
@@ -65,8 +69,8 @@ app.post('/sms', function(req, res) {
       method: 'post',
       body: { To: process.env.TEST_RCVP_NUMBER, From: process.env.TWILIO_NUMBER, Body: req.body.message }, // Javascript object
       json: true, // Use,If you are sending JSON data
-      //url: 'https://touchdownhero.herokuapp.com/test',
-      url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages',
+      url: 'https://touchdownhero.herokuapp.com/test',
+      //url: 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/Messages',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       authorization : {
         username: process.env.TWILIO_ACCOUNT_SID,
@@ -79,7 +83,7 @@ app.post('/sms', function(req, res) {
         console.log('Error :' ,err)
         return
       }     
-      console.log(' Body :',body)
+      // console.log(' Body :',body)
 
     });
 
